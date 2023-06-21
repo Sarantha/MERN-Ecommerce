@@ -172,7 +172,7 @@ const OrderScreen = () => {
                                                     </Link>
                                                 </Col>
                                                 <Col md={4}>
-                                                    {item.qty} x ${item.price} = ${item.qty * item.price}
+                                                    {item.qty} x Rs.{item.price} = Rs.{item.qty * item.price}
                                                 </Col>
                                             </Row>
                                         </ListGroup.Item>
@@ -191,25 +191,25 @@ const OrderScreen = () => {
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Items</Col>
-                                    <Col>${order.itemsPrice}</Col>
+                                    <Col>Rs.{order.itemsPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Shipping</Col>
-                                    <Col>${order.shippingPrice}</Col>
+                                    <Col>Rs.{order.shippingPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Tax</Col>
-                                    <Col>${order.taxPrice}</Col>
+                                    <Col>Rs.{order.taxPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Total</Col>
-                                    <Col>${order.totalPrice}</Col>
+                                    <Col>Rs.{order.totalPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
                             {!order.isPaid && (
@@ -220,8 +220,10 @@ const OrderScreen = () => {
                                         <Loader />
                                     ) : (
                                         <div>
-                                            <Button style={{ marginBottom: '10px' }} onClick={onApproveTest}>Test Pay Order</Button>
-
+                                            {userInfo && userInfo.isAdmin &&
+                                                (
+                                                    <Button style={{ marginBottom: '10px' }} onClick={onApproveTest}>Test Pay Order</Button>
+                                                )}
                                             <div>
                                                 <PayPalButtons
                                                     createOrder={createOrder}

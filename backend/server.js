@@ -1,8 +1,8 @@
 import path from 'path';
 import express from 'express';
-import dotEnv from 'dotenv';
+import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-dotEnv.config();
+dotenv.config();
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -48,4 +48,6 @@ if (process.env.NODE_ENV === 'production') {
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(port, () =>
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}`)
+);
